@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  -
+    let results = [
+          {
+             "Baloon_Color": "Blue",
+             "Baloon_type": "latex",
+             "Baloon_Size": 10
+          },
+          {
+             "Baloon_Color": "Red",
+             "Baloon_type": "mylar",
+             "Baloon_Size": 20
+          },
+          {
+             "Baloon_Color": "Blue",
+             "Baloon_type": "vinyl",
+             "Baloon_Size": 30
+          },                   
+      ]
+
+  div(class= "container-fluid")
+    div(class = "row")  
+      each item,index in results
+        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.Baloon_Color}
+        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.Baloon_type}
+        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.Baloon_Size}
+
+  script.
+    function buy(itemNum){
+    alert(`You purchased item ${itemNum+1}`)
+    }
