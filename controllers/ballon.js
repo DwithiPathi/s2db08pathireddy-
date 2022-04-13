@@ -34,9 +34,9 @@ exports.ballon_create_post = async function (req, res) {
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
     // {"Dimensions":"Stylish", "Color":"Violet", "Price":1500}
-    document.Dimensions = req.body.Dimensions;
-    document.Color = req.body.Color;
-    document.Price = req.body.Price;
+    document.ballon_type = req.body.ballon_type;
+    document.size = req.body.size;
+    document.cost = req.body.cost;
     try{
         let result = await document.save();
         res.send(result);

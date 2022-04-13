@@ -14,7 +14,7 @@ useUnifiedTopology: true});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var baloonRouter = require('./routes/baloon');
+var baloonRouter = require('./routes/ballon');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
 var Ballon = require("./models/ballon"); 
@@ -69,7 +69,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/baloon', baloonRouter);
+app.use('/ballon', baloonRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
 app.use('/resource', resourceRouter);
