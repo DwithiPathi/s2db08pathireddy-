@@ -15,15 +15,7 @@ const secured = (req, res, next) => {
 router.get('/', ballon_controlers.ballon_view_all_Page );
 module.exports = router;
 
-// /* GET detail ballon page */
-// router.get('/detail', ballon_controlers.ballon_view_one_Page);
+// GET request for one costume. 
+router.get('/ballon/:id', ballon_controlers.ballon_detail); 
 
-// /* GET create ballon page */
-// router.get('/create',secured, ballon_controlers.ballon_create_Page);
-
-// /* GET update ballon page */
-// router.get('/update',secured,ballon_controlers.ballon_update_Page);
-
-// /* GET create ballon page */
-// router.get('/delete', secured,ballon_controlers.ballon_delete_Page);
 

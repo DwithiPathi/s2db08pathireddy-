@@ -93,56 +93,14 @@ exports.ballon_view_all_Page = async function(req, res) {
     res.status(500);
     }
     };
-// Handle a show one view with id specified by query
-exports.ballon_view_one_Page = async function(req, res) {
-    console.log("single view for id "  + req.query.id)
-    try{
-        result = await ballon.findById( req.query.id)
-        res.render('ballondetail', 
-{ title: 'ballon Details', toShow: result });
-    }
-    catch(err){
-        res.status(500)
-        res.send(`{'error': '${err}'}`);
-    }
-};
- // Handle building the view for creating a ballon.
-// No body, no in path parameter, no query.
-// Does not need to be async
-exports.ballon_create_Page =  function(req, res) {
-    console.log("create view")
-    try{
-        res.render('balloncreate', { title: 'ballon Create'});
-    }
-    catch(err){
-        res.status(500)
-        res.send(`{'error': '${err}'}`);
-    }
-};
-// Handle building the view for updating a ballon.
-// query provides the id
-exports.ballon_update_Page =  async function(req, res) {
-    console.log("update view for item "+req.query.id)
-    try{
-        let result = await ballon.findById(req.query.id)
-        res.render('ballonupdate', { title: 'Updated ballon', toShow: result });
-    }
-    catch(err){
-        res.status(500)
-        res.send(`{'error': '${err}'}`);
-    }
-};
-// Handle a delete one view with id from query
-exports.ballon_delete_Page = async function(req, res) {
-    console.log("Delete view for id "  + req.query.id)
-    try{
-        result = await ballon.findById(req.query.id)
-        res.render('ballondelete', { title: 'Deleted ballon', toShow: result });
-    }
-    catch(err){
-        res.status(500)
-        res.send(`{'error': '${err}'}`);
-    }
-};
-
-
+    // for a specific Costume. 
+    exports.ballon_detail = async function(req, res) { 
+        console.log("detail"  + req.params.id) 
+        try { 
+            result = await ballon.findById( req.params.id) 
+            res.send(result) 
+        } catch (error) { 
+            res.status(500) 
+            res.send(`{"error": document for id ${req.params.id} not found`); 
+        } 
+    }; 
