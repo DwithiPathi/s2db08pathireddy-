@@ -1,0 +1,53 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let ballonid = toShow._id 
+    - let ballon_type = toShow.ballon_type 
+    - let balloncost = toShow.cost 
+    - let ballonsize = toShow.size 
+    - let actionid = "/resource/ballon/" + ballonid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='ballonAttr mr-3') ballon ID is: 
+        div #{ballonid} 
+      div.row 
+        div(class='ballonAttr mr-3') ballon Type is: 
+        div #{ballon_type} 
+      div.row 
+        div(class='ballonAttr mr-3') ballon Size is: 
+        div #{ballonsize} 
+      div.row 
+        div(class='costumeAttr mr-3') ballon Cost is: 
+        div #{balloncost} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the ballon collection 
+      window.location.href='/ballon' 
+    } 
+  script.
+    function deleteOnid() {
+      console.log("starting delete")
+      // delete first
+      fetch(actionid, {
+        method: 'DELETE'      // Don't need a body for the delete
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Delete succeded")
+        window.location.href='/ballon'
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Delete failed " + error )
+      });
+    }

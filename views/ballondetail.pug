@@ -1,8 +1,10 @@
 extends layout 
  
-block content 
-  h1= title 
- 
+block content
+  h1(id="title")= title
+
+  if (toShow == null)
+    h2 No instance to show details
   - let ballonid = toShow._id 
   - let ballon_type = toShow.ballon_type 
   - let balloncost = toShow.cost 
