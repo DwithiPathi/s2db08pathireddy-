@@ -18,4 +18,7 @@ module.exports = router;
 // GET request for one costume. 
 router.get('/ballon/:id', ballon_controlers.ballon_detail); 
 
+/* GET detail ballon page */ 
+router.get('/detail', ballon_controlers.ballon_view_one_Page); 
+
 

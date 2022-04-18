@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let ballonid = toShow._id 
+  - let ballon_type = toShow.ballon_type 
+  - let balloncost = toShow.cost 
+  - let ballonsize = toShow.size 
+  div 
+    div.row 
+      div(class='ballonAttr mr-3') ballon ID is: 
+      div #{ballonid} 
+    div.row 
+      div(class='ballonAttr mr-3') ballon Type is: 
+      div #{ballon_type} 
+    div.row 
+      div(class='ballonAttr mr-3') ballon Size is: 
+      div #{ballonsize} 
+    div.row 
+      div(class='ballonAttr mr-3') ballon Cost is: 
+      div #{balloncost} 

@@ -27,9 +27,9 @@ exports.ballon_create_post = async function(req, res) {
     } 
 };
 // Handle ballon delete form on DELETE.
-exports.ballon_delete = function(req, res) {
- res.send('NOT IMPLEMENTED: ballon delete DELETE ' + req.params.id);
-};
+// exports.ballon_delete = function(req, res) {
+//  res.send('NOT IMPLEMENTED: ballon delete DELETE ' + req.params.id);
+// };
 // // Handle ballon update form on PUT.
 // exports.ballon_update_put = function(req, res) {
 //  res.send('NOT IMPLEMENTED: ballon update PUT' + req.params.id);
@@ -79,3 +79,29 @@ ${JSON.stringify(req.body)}`)
 failed`);
  }
 };
+// Handle Ballon delete on DELETE. 
+exports.ballon_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await ballon.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+}; 
+
+// Handle a show one view with id specified by query 
+exports.ballon_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await ballon.findById( req.query.id) 
+        res.render('ballondetail',  
+{ title: 'ballon Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
