@@ -2,34 +2,29 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  -
-    let results = [
-          {
-             "Baloon_Color": "Blue",
-             "Baloon_type": "latex",
-             "Baloon_Size": 10
-          },
-          {
-             "Baloon_Color": "Red",
-             "Baloon_type": "mylar",
-             "Baloon_Size": 20
-          },
-          {
-             "Baloon_Color": "Blue",
-             "Baloon_type": "vinyl",
-             "Baloon_Size": 30
-          },                   
-      ]
-
-  div(class= "container-fluid")
-    div(class = "row")  
-      each item,index in results
-        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.Baloon_Color}
-        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.Baloon_type}
-        div(class= "col-sm-2", onclick=`buy(${index})`) #{item.Baloon_Size}
-
+  - let ballons=results
+  div(class="container-fluid")
+    button.btn( class="btn-danger ml-1", onclick= destinationcreate) Create
+  div(class="row m-1")
+    each ballon in ballons
+      - let destinationupdate = `dispatch(\"/ballon/update?id=${ballon._id}\")`
+      - let destinationcreate = `dispatchCreate(\"/ballon/create\")`
+      - let destinationdetail = `dispatch(\"/ballon/detail/?id=${ballon._id}\")`
+      div(class="col-ml-1 btn btn-light") #{ballon.ballon_type} - #{ballon.cost} - #{ballon.size}
+          button.btn( class="btn-secondary ml-1", onclick= destinationdetail) Details 
+          button.btn( class="btn-info ml-1", onclick= destinationupdate) Update
+          button.btn( class="btn-danger ml-1", onclick= destinationdelete) Delete
   script.
-    function buy(itemNum){
-    alert(`You purchased item ${itemNum+1}`)
-    }
+      function dispatch(path){
+      window.location.href=path
+      }
+      function buy(itemNo)
+      {
+        alert(`You purchased Item ${itemNo+1}`)
+      }
+      function dispatchCreate(path){
+        window.location.href=path
+      }
+      function dispatchDelete(path){
+        window.location.href=path
+      }

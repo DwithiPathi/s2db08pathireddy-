@@ -25,7 +25,7 @@ router.get('/detail', ballon_controlers.ballon_view_one_Page);
 router.get('/create', ballon_controlers.ballon_create_Page); 
 
 /* GET create update page */ 
-router.get('/update', ballon_controlers.ballon_update_Page); 
+router.get('/update', secured,ballon_controlers.ballon_update_Page); 
 
 /* GET delete ballon page */ 
 router.get('/delete', ballon_controlers.ballon_delete_Page); 
